@@ -1,0 +1,63 @@
+base:
+  apt:
+    - atom
+    - cargo
+    - cmake
+    - cryptsetup
+    - docker.io
+    - emacs
+    - exuberant-ctags
+    - flatpak
+    - git
+    - gitk
+    - golang-go
+    - graphviz
+    - gufw
+    - htop
+    - meld
+    - network-manager-openvpn-gnome
+    - nodejs
+    - npm
+    - openssh-server
+    - openvpn
+    - postgresql-client-common
+    - python3-pip
+    - python3-venv
+    - ruby-dev
+    - shotwell
+    - sshfs
+    - stow
+    - synaptic
+    - tree
+    - vim
+    - xdotool
+  npm:
+    - ungit
+    - parcel-bundler
+  pip:
+    - aiohttp
+    - dataclasses
+    - django
+    - fabric
+    - fire
+    - flask
+    - graphviz
+    - httpie
+    - ipython
+    - jupyter
+    - lxml
+    - pandas
+    - psycopg2-binary
+    - pymongo
+    - pytest
+    - redis
+    - selenium
+    - sh
+    - sqlsoup
+    - xmltodict
+    - yapf
+    - yeelight
+    - youtube-dl
+work:
+  pip:
+    - isort

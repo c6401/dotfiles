@@ -1,0 +1,110 @@
+#! /usr/local/bin/ansible-playbook -K
+- hosts: localhost
+  connection: local
+  tasks:
+    - include_vars:
+        file: packages.yaml
+        name: _config
+      tags: [apt, bin, cargo, deb, gem, go, npm, pip, pip-remove]
+    - set_fact:
+        remove: '{{ _config.pop("remove") }}'
+      tags: [apt, bin, cargo, deb, gem, go, npm, pip, pip-remove]
+    - set_fact:  # set config as _config without "remove" key
+        config: '{{ _config.pop("remove") and _config }}'
+      tags: [apt, bin, cargo, deb, gem, go, npm, pip, pip-remove]
+
+    - name: apt
+      apt:
+        name: '{{ item.apt }}'
+      with_items: '{{ config.values() | list }}'
+      when: '"apt" in item'
+      become: true
+      tags: apt
+
+    - name: bin
+      get_url:
+        url: '{{ item.1 }}'
+        dest: ~/bin/
+        mode: 0744
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - bin
+        - flags:
+          skip_missing: true
+      tags: bin
+
+    - name: cargo
+      command: 'cargo install {{ item.1 }}'
+      args:
+          creates: ~/.cargo/bin/{{ item.1 }}
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - cargo
+        - flags:
+          skip_missing: true
+      tags: cargo
+
+    - name: deb
+      apt:
+        deb: '{{ item.1 }}'
+      become: true
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - deb
+        - flags:
+          skip_missing: true
+      tags: deb
+
+    - name: gem
+      gem:
+        name: '{{ item.1 }}'
+      become: true
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - gem
+        - flags:
+          skip_missing: true
+      tags: gem
+
+    - name: go
+      command: 'go get -u {{ item.1 }}'
+      args:
+        creates: ~/go/src/{{ item.1 }}
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - go
+        - flags:
+          skip_missing: true
+
+    - name: npm
+      npm:
+        name: '{{ item.1 }}'
+        global: yes
+      become: true
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - npm
+        - flags:
+          skip_missing: true
+      tags: npm
+
+    - name: pip
+      pip:
+        executable: '/usr/bin/pip3'
+        name: '{{ item.pip }}'
+      with_items: '{{ config.values() | list }}'
+      when: '"pip" in item'
+      become: true
+      tags: pip
+
+    - name: pip-remove
+      pip:
+        executable: '/usr/bin/pip3'
+        name: '{{ remove.pip }}'
+        state: absent
+      when: '"pip" in remove'
+      become: true
+      tags: pip
+
+
+
