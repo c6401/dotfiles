@@ -5,13 +5,13 @@
     - include_vars:
         file: packages.yaml
         name: _config
-      tags: [apt, bin, cargo, deb, gem, go, npm, pip, pip-remove]
+      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip]
     - set_fact:
         remove: '{{ _config.pop("remove") }}'
-      tags: [apt, bin, cargo, deb, gem, go, npm, pip, pip-remove]
+      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip]
     - set_fact:  # set config as _config without "remove" key
         config: '{{ _config.pop("remove") and _config }}'
-      tags: [apt, bin, cargo, deb, gem, go, npm, pip, pip-remove]
+      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip]
 
     - name: apt
       apt:
@@ -106,5 +106,22 @@
       become: true
       tags: pip
 
+    - name: archive
+      unarchive:
+        src: '{{ item.1 }}'
+        dest: ~/bin/
+        remote_src: yes
+        extra_opts:
+          - --strip
+          - '1'
+        exclude:
+          - README.md
+          - Changes
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - archive
+        - flags:
+          skip_missing: true
+      tags: archive
 
 
