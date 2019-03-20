@@ -15,6 +15,7 @@ base:
     - gufw
     - htop
     - meld
+    - mc
     - network-manager-openvpn-gnome
     - nodejs
     - npm
@@ -53,7 +54,9 @@ base:
     - psycopg2-binary
     - pymongo
     - pytest
+    - python-dotenv
     - redis
+    - rpdb
     - selenium
     - sh
     - sqlsoup

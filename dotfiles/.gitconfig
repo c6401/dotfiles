@@ -3,3 +3,24 @@
 	name = Ruslan Zhenetl
 [core]
 	eol = lf
+[alias]
+	amend = commit --amend
+	b = branch
+	branch-name = rev-parse --abbrev-ref HEAD
+	branches = branch -a
+	c = commit
+	co = checkout
+	copy-branch-to = checkout -b
+	pick = cherry-pick
+	fresh-master = !git checkout master && git pull origin master
+	fresh-feature = "!f() { git fresh-master; git copy-branch-to $1; }; f"
+	graph = log --graph --all  --decorate --oneline
+	messages = log --pretty=format:%s
+	publish = !git push -u origin $(git branch-name)
+	remotes = remote -v
+	st = status
+	stashes = stash list
+	syncup = pull --rebase origin $(git branch-name)
+	tags = tag
+	uncommit = reset --soft HEAD^
+	unstage = reset HEAD --
