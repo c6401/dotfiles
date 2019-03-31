@@ -12,13 +12,14 @@
 	co = checkout
 	copy-branch-to = checkout -b
 	pick = cherry-pick
-	fresh = git pull origin $(git branch-name)
 	fresh-master = !git checkout master && git pull origin master
 	fresh-feature = "!f() { git fresh-master; git copy-branch-to $1; }; f"
 	graph = log --graph --all  --decorate --oneline
 	messages = log --pretty=format:%s
 	publish = !git push -u origin $(git branch-name)
+	refresh = !git pull origin $(git branch-name)
 	remotes = remote -v
+	rmb = branch -D
 	st = status
 	stashes = stash list
 	syncup = pull --rebase origin $(git branch-name)
