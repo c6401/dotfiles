@@ -5,24 +5,28 @@
 	eol = lf
 [alias]
 	amend = commit --amend
-	b = branch
+	br = branch
 	branch-name = rev-parse --abbrev-ref HEAD
 	branches = branch -a
-	c = commit
+	ci = commit
 	co = checkout
-	copy-branch-to = checkout -b
 	pick = cherry-pick
+	feature = "!f() { git fresh-master; git copy-branch-to $1; }; f"
 	fresh-master = !git checkout master && git pull origin master
-	fresh-feature = "!f() { git fresh-master; git copy-branch-to $1; }; f"
 	graph = log --graph --all  --decorate --oneline
+	hardreset = reset --hard HEAD^
 	messages = log --pretty=format:%s
+	new = checkout -b
+	pop = stash pop
 	publish = !git push -u origin $(git branch-name)
 	refresh = !git pull origin $(git branch-name)
 	remotes = remote -v
 	rmb = branch -D
 	st = status
 	stashes = stash list
-	syncup = pull --rebase origin $(git branch-name)
+	syncup = pull --rebase origin master
 	tags = tag
-	uncommit = reset --soft HEAD^
+	uncommit = reset --mixed HEAD^
 	unstage = reset HEAD --
+	untrack = rm --cached
+
