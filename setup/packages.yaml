@@ -8,6 +8,7 @@ base:
     - emacs
     - exuberant-ctags
     - flatpak
+    - gedit-plugins
     - git
     - gitk
     - golang-go
@@ -21,6 +22,7 @@ base:
     - npm
     - openssh-server
     - openvpn
+    - plantuml
     - postgresql-client-common
     - python3-pip
     - python3-venv
@@ -52,6 +54,7 @@ base:
     - lxml
     - pandas
     - psycopg2-binary
+    - py3exiv2
     - pymongo
     - pytest
     - python-dotenv
