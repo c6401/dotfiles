@@ -1,6 +1,8 @@
 base:
   apt:
-    - atom
+    - alacarte
+    - aptitude
+    - bleachbit
     - cargo
     - cmake
     - cryptsetup
@@ -24,6 +26,8 @@ base:
     - openvpn
     - plantuml
     - postgresql-client-common
+    - powertop
+    - python3-dev
     - python3-pip
     - python3-venv
     - ruby-dev
@@ -36,6 +40,8 @@ base:
     - xdotool
   deb:
     - https://github.com/sharkdp/fd/releases/download/v7.2.0/fd_7.2.0_amd64.deb
+    - https://atom.io/download/deb
+    - https://github.com/sharkdp/bat/releases/latest/download/bat_0.10.0_amd64.deb
   npm:
     - ungit
     - parcel-bundler

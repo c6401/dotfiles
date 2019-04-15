@@ -5,13 +5,25 @@
     - include_vars:
         file: packages.yaml
         name: _config
-      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip]
+      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip, ppa]
     - set_fact:
         remove: '{{ _config.pop("remove") }}'
-      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip]
+      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip, ppa]
     - set_fact:  # set config as _config without "remove" key
         config: '{{ _config.pop("remove") and _config }}'
-      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip]
+      tags: [apt, archive, bin, cargo, deb, gem, go, npm, pip, pip-remove, zip, ppa]
+
+    - name: ppa
+      apt_repository:
+        repo: '{{ item.1 }}'
+      become: true
+      with_subelements:
+        - '{{ config.values() | list }}'
+        - ppa
+        - flags:
+          skip_missing: true
+      ignore_errors: True
+      tags: ppa
 
     - name: apt
       apt:
@@ -19,7 +31,24 @@
       with_items: '{{ config.values() | list }}'
       when: '"apt" in item'
       become: true
-      tags: apt
+      tags: [apt, ppa]
+
+    - name: apt-remove
+      apt:
+        name: '{{ remove.apt }}'
+        state: absent
+      when: '"apt" in remove'
+      become: true
+      tags: [apt, ppa]
+
+    - name: ppa-remove
+      apt_repository:
+        repo: '{{ item }}'
+        state: absent
+      become: true
+      with_items: '{{ remove.ppa }}'
+      when: '"ppa" in remove'
+      tags: ppa
 
     - name: bin
       get_url:

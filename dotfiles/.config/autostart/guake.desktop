@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name = guake
+Type = Application
+Exec = /usr/bin/guake

@@ -11,7 +11,7 @@
 	ci = commit
 	co = checkout
 	pick = cherry-pick
-	feature = "!f() { git fresh-master; git copy-branch-to $1; }; f"
+	feature = "!f() { git fresh-master; git new $1; }; f"
 	fresh-master = !git checkout master && git pull origin master
 	graph = log --graph --all  --decorate --oneline
 	hardreset = reset --hard HEAD^
