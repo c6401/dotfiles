@@ -10,22 +10,24 @@
 	branches = branch -a
 	ci = commit
 	co = checkout
+	cpbranch = checkout -b
 	pick = cherry-pick
 	feature = "!f() { git fresh master; git new $1; }; f"
-	fresh = "!f() { local b=${1:-master}; git checkout $b && git pull origin $b; }; f"
+	fresh = "!f() { git checkout $1 && git pull origin $1; }; f"
+	get = "!f() { git fetch origin $1; git checkout $1; }; f"
 	graph = log --graph --all  --decorate --oneline
 	hardreset = reset --hard HEAD^
 	messages = log --pretty=format:%s
-	new = checkout -b
 	pop = stash pop
 	publish = !git push -u origin $(git branch-name)
 	unpublish = push origin --delete
 	refresh = !git pull origin $(git branch-name)
 	remotes = remote -v
-	rmb = branch -D
+	rmbranch = branch -D
 	st = status
+	staged = diff --staged --name-only
 	stashes = stash list
-	syncup = pull --rebase origin master
+	sync = "!git pull origin $(git branch-name) && git push origin $(git branch-name)"
 	tags = tag
 	uncommit = reset --mixed HEAD^
 	unstage = reset HEAD --
