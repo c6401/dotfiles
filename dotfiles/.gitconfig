@@ -11,8 +11,6 @@
 	ci = commit
 	co = checkout
 	pick = cherry-pick
-	feature = "!f() { git fresh-master; git new $1; }; f"
-	fresh-master = !git checkout master && git pull origin master
 	feature = "!f() { git fresh master; git new $1; }; f"
 	fresh = "!f() { local b=${1:-master}; git checkout $b && git pull origin $b; }; f"
 	graph = log --graph --all  --decorate --oneline
