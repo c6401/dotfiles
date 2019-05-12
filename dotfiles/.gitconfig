@@ -12,7 +12,7 @@
 	co = checkout
 	cpbranch = checkout -b
 	pick = cherry-pick
-	feature = "!f() { git fresh master; git new $1; }; f"
+	feature = "!f() { git fresh master; git cpbranch $1; }; f"
 	fresh = "!f() { git checkout $1 && git pull origin $1; }; f"
 	get = "!f() { git fetch origin $1; git checkout $1; }; f"
 	graph = log --graph --all  --decorate --oneline
