@@ -2,3 +2,4 @@
 .mypy_cache/
 .vscode/
 setup/setup-packages.retry
+*.retry
