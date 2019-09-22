@@ -1,4 +1,4 @@
-#!/usr/bin/env -S ansible-playbook -K --tags=apt #-get
+#!/usr/bin/env -S ansible-playbook -K --step
 - hosts: localhost
   connection: local
   gather_facts: false
@@ -39,7 +39,15 @@
       become: true
       tags: apt, apt-get
 
-    - name: appimage
+    - name: install deb packages
+      apt:
+        deb: '{{ item }}'
+      with_items:
+        - https://atom.io/download/deb
+      become: true
+      tags: deb
+
+    - name: Install appimage applications
       get_url:
         url: '{{ item }}'
         dest: ~/Applications
