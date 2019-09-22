@@ -12,7 +12,6 @@
 	co = checkout
 	commits = log --pretty=oneline
 	cpbranch = checkout -b
-	pick = cherry-pick
 	feature = "!f() { git fresh master; git checkout -b $1; }; f"
 	forcepush = push -f
 	fresh = "!f() { git checkout $1 && git pull origin $1; }; f"
@@ -21,9 +20,9 @@
 	hardreset = "!f() { git reset --hard HEAD~$1; }; f"
 	linearize = !git pull --rebase origin $(git branch-name)
 	messages = log --pretty=format:%s
+	pick = cherry-pick
 	pop = stash pop
 	publish = !git push -u origin $(git branch-name)
-	unpublish = push origin --delete
 	recommit = commit --amend --no-edit
 	refresh = !git pull origin $(git branch-name)
 	remotes = remote -v
@@ -35,6 +34,7 @@
 	sync = "!git pull origin $(git branch-name) && git push origin $(git branch-name)"
 	tags = tag
 	uncommit = reset --mixed HEAD^
+	unpublish = push origin --delete
 	unstage = reset HEAD --
 	unstashed = diff --name-only
 	untrack = rm --cached
