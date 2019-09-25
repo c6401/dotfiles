@@ -124,3 +124,7 @@ export XDG_CACHE_HOME="$HOME/.cache"
 alias doco='docker-compose'
 alias docover='docker-compose -f docker-compose.yml -f'
 alias anpl='ansible-playbook'
+
+if test -f ".userbashrc"; then
+  source ".userbashrc"
+fi
