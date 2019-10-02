@@ -5,6 +5,7 @@
 	eol = lf
 [alias]
 	amend = commit --amend
+	amendpush = !git add -u && git commit --amend --no-edit && git push -f
 	br = branch
 	branch-name = rev-parse --abbrev-ref HEAD
 	branches = branch -a
@@ -23,6 +24,7 @@
 	pick = cherry-pick
 	pop = stash pop
 	publish = !git push -u origin $(git branch-name)
+	pub = publish
 	recommit = commit --amend --no-edit
 	refresh = !git pull origin $(git branch-name)
 	remotes = remote -v
