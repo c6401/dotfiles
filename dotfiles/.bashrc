@@ -120,10 +120,7 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 
-if test -f ".userbashrc"; then
-  source ".userbashrc"
+if [ -f .userbashrc ]; then
+    . ~/.userbashrc
 fi
 
-if test -f ".alias"; then
-  source ".alias"
-fi
