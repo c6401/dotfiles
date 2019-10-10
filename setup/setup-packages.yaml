@@ -3,23 +3,26 @@
   connection: local
   gather_facts: false
   tasks:
-    - apt_key:
+    - name: add apt keys
+      apt_key:
         url: '{{ item }}'
       with_items:
         - https://typora.io/linux/public-key.asc
       become: true
       tags: apt, repository
 
-    - apt_repository:
+    - name: add apt repositories
+      apt_repository:
         repo: '{{ item }}'
       with_items:
         - 'deb https://typora.io/linux ./'
         - 'ppa:bablu-boy/nutty'
-        - 'deb https://www.charlesproxy.com/packages/apt/ charles-proxy main'
       become: true
       tags: apt, repository
 
     - apt:
+    - name: update apt
+      apt:
         update_cache: yes
         upgrade: true
         autoclean: true
@@ -28,14 +31,16 @@
       tags: apt
 
     - apt:
+    - name: install apt packages
+      apt:
         name:
-          - charles-proxy
           - com.github.babluboy.nutty
           - emacs-gtk
-          - python3
-          - typora
           - hub
           - python-ldtp
+          - python3
+          - typora
+          - zsh
       become: true
       tags: apt, apt-get
 
@@ -56,7 +61,8 @@
         - 'https://bintray.com/colinduquesnoy/MellowPlayer/download_file?file_path=stable/3.5.0%2FMellowPlayer-x86_64.AppImage'
       tags: appimage
 
-    - pip:
+    - name: install pip packages
+      pip:
         executable: '/usr/bin/pip3'
         extra_args: --user
         name:
