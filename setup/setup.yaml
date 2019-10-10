@@ -68,7 +68,7 @@
         - '"telemetry.enableCrashReporter": false,'
         - '"telemetry.enableTelemetry": false,'
 
-          - name: install oh my zsh
+    - name: install oh my zsh
       git:
         repo: https://github.com/robbyrussell/oh-my-zsh.git
         dest: ~/.oh-my-zsh
