@@ -20,7 +20,6 @@
       become: true
       tags: apt, repository
 
-    - apt:
     - name: update apt
       apt:
         update_cache: yes
@@ -30,7 +29,6 @@
       become: true
       tags: apt
 
-    - apt:
     - name: install apt packages
       apt:
         name:
