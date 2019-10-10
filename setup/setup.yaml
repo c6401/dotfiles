@@ -20,14 +20,14 @@
         job: shutdown -h now
       become: true
 
-    - name: dark theme
+    - name: dark theme at 22
       cron:
         name: dark theme
         minute: 0
         hour: 22
         job: '/usr/bin/env DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session)/environ|cut -d= -f2-) gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark'
 
-    - name: light theme
+    - name: light theme at 6
       cron:
         name: light theme
         minute: 0
@@ -45,6 +45,7 @@
       git:
         repo: 'https://github.com/syl20bnr/spacemacs'
         dest: '~/.emacs.d'
+        version: develop
 
     - name: docker user
       user:
@@ -67,4 +68,12 @@
         - '"telemetry.enableCrashReporter": false,'
         - '"telemetry.enableTelemetry": false,'
 
-      
+          - name: install oh my zsh
+      git:
+        repo: https://github.com/robbyrussell/oh-my-zsh.git
+        dest: ~/.oh-my-zsh
+
+    - name: copy oh my zsh rc file
+      copy:
+        src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+        dest: ~/.zshrc
