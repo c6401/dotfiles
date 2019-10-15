@@ -4,35 +4,37 @@
   vars:
     user: c6401
   tasks:
-    - name: brightness down at 0:30
-      cron:
-        name: brightness down
-        minute: 30
-        hour: 0
-        job: echo 20 > /sys/class/backlight/intel_backlight/brightness
-      become: true
+    - name: crontab
+      block:
+        - name: brightness down at 0:30
+          cron:
+            name: brightness down
+            minute: 30
+            hour: 0
+            job: echo 20 > /sys/class/backlight/intel_backlight/brightness
+          become: true
 
-    - name: shutdown at 2
-      cron:
-        name: shutdown at 2
-        minute: 0
-        hour: 2
-        job: shutdown -h now
-      become: true
+        - name: shutdown at 2
+          cron:
+            name: shutdown at 2
+            minute: 0
+            hour: 2
+            job: shutdown -h now
+          become: true
 
-    - name: dark theme at 22
-      cron:
-        name: dark theme
-        minute: 0
-        hour: 22
-        job: '/usr/bin/env DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session)/environ|cut -d= -f2-) gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark'
+        - name: dark theme at 22
+          cron:
+            name: dark theme
+            minute: 0
+            hour: 22
+            job: '/usr/bin/env DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session)/environ|cut -d= -f2-) gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark'
 
-    - name: light theme at 6
-      cron:
-        name: light theme
-        minute: 0
-        hour: 6
-        job: '/usr/bin/env DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session)/environ|cut -d= -f2-) gsettings set org.gnome.desktop.interface gtk-theme Adwaita'
+        - name: light theme at 6
+          cron:
+            name: light theme
+            minute: 0
+            hour: 6
+            job: '/usr/bin/env DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session)/environ|cut -d= -f2-) gsettings set org.gnome.desktop.interface gtk-theme Adwaita'
 
     - name: link dropbox pictures
       file:
@@ -68,12 +70,14 @@
         - '"telemetry.enableCrashReporter": false,'
         - '"telemetry.enableTelemetry": false,'
 
-    - name: install oh my zsh
-      git:
-        repo: https://github.com/robbyrussell/oh-my-zsh.git
-        dest: ~/.oh-my-zsh
+    - name: zsh
+      block:
+        - name: install oh my zsh
+          git:
+            repo: https://github.com/robbyrussell/oh-my-zsh.git
+            dest: ~/.oh-my-zsh
 
-    - name: copy oh my zsh rc file
-      copy:
-        src: ~/.oh-my-zsh/templates/zshrc.zsh-template
-        dest: ~/.zshrc
+        - name: copy oh my zsh rc file
+          copy:
+            src: ~/.oh-my-zsh/templates/zshrc.zsh-template
+            dest: ~/.zshrc
