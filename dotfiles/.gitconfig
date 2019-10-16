@@ -12,13 +12,15 @@
 	ci = commit
 	co = checkout
 	commits = log --pretty=oneline
-	cpbranch = checkout -b
+	copy-branch = checkout -b
+	cpb = copy-branch
 	feature = "!f() { git fresh master; git checkout -b $1; }; f"
 	forcepush = push -f
 	fresh = "!f() { git checkout $1 && git pull origin $1; }; f"
 	get = "!f() { git fetch origin $1; git checkout $1; }; f"
 	graph = log --graph --all  --decorate --oneline
 	hardreset = "!f() { git reset --hard HEAD~$1; }; f"
+	hr = hardreset
 	linearize = !git pull --rebase origin $(git branch-name)
 	messages = log --pretty=format:%s
 	pick = cherry-pick
@@ -28,13 +30,15 @@
 	recommit = commit --amend --no-edit
 	refresh = !git pull origin $(git branch-name)
 	remotes = remote -v
-	rmbranch = branch -D
+	remove-branch = branch -D
+	rmb = remove-branch
 	savepoint = !git add -u && git commit --allow-empty-message -m ''
 	st = status
 	staged = diff --staged --name-only
 	stashes = stash list
 	sync = "!git pull origin $(git branch-name) && git push origin $(git branch-name)"
 	tags = tag
+	uc = uncommit
 	uncommit = reset --mixed HEAD^
 	unpublish = push origin --delete
 	unstage = reset HEAD --
