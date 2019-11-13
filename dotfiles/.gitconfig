@@ -4,6 +4,7 @@
 [core]
 	eol = lf
 [alias]
+	addup = add -up
 	amend = commit --amend
 	amendpush = !git add -u && git commit --amend --no-edit && git push -f
 	br = branch
@@ -36,7 +37,7 @@
 	st = status
 	staged = diff --staged --name-only
 	stashes = stash list
-	sync = "!git pull origin $(git branch-name) && git push origin $(git branch-name)"
+	syncup = pull origin master
 	tags = tag
 	uc = uncommit
 	uncommit = reset --mixed HEAD^
