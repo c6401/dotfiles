@@ -8,6 +8,7 @@
         url: '{{ item }}'
       with_items:
         - https://typora.io/linux/public-key.asc
+        - https://packagecloud.io/AtomEditor/atom/gpgkey
       become: true
       tags: apt, repository
 
@@ -16,7 +17,7 @@
         repo: '{{ item }}'
       with_items:
         - 'deb https://typora.io/linux ./'
-        - 'ppa:bablu-boy/nutty'
+        - 'deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main'
       become: true
       tags: apt, repository
 
@@ -32,7 +33,7 @@
     - name: install apt packages
       apt:
         name:
-          - com.github.babluboy.nutty
+          - atom
           - emacs-gtk
           - hub
           - python-ldtp
@@ -50,7 +51,7 @@
       become: true
       tags: deb
 
-    - name: Install appimage applications
+    - name: install appimage applications
       get_url:
         url: '{{ item }}'
         dest: ~/Applications
