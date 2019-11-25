@@ -1,0 +1,40 @@
+#!/usr/bin/env -S ansible-playbook --step
+- hosts: pi
+  tasks:
+    - name: update
+      apt:
+        autoclean: yes
+        autoremove: yes
+        update_cache: yes
+        upgrade: yes
+      become: yes
+
+    - name: packages
+      apt:
+        name:
+          - mc
+          - vim
+      become: yes
+
+    - name: webmin
+      block:
+        - name: add apt keys
+          apt_key:
+            url: http://www.webmin.com/jcameron-key.asc
+
+        - name: add apt repositories
+          apt_repository:
+            repo: '{{ item }}'
+          with_items:
+            - deb http://download.webmin.com/download/repository sarge contrib
+            - deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
+
+        - name: update cache
+          apt:
+            update_cache: yes
+
+        - name: install webmin
+          apt:
+            name: webmin
+      become: true
+
