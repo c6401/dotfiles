@@ -19,7 +19,7 @@
 	forcepush = push -f
 	fresh = "!f() { git checkout $1 && git pull origin $1; }; f"
 	get = "!f() { git fetch origin $1; git checkout $1; }; f"
-	graph = log --graph --all  --decorate --oneline
+	graph = log --graph --all --decorate --oneline
 	hardreset = "!f() { git reset --hard HEAD~$1; }; f"
 	hr = hardreset
 	linearize = !git pull --rebase origin $(git branch-name)
