@@ -6,28 +6,28 @@
   tasks:
     - name: crontab
       block:
-        - name: brightness down at 0:30
+        - name: crontab brightness down at 0:30
           cron:
             name: brightness down
             minute: 30
             hour: 0
             job: echo 20 > /sys/class/backlight/intel_backlight/brightness
 
-        - name: shutdown at 2
+        - name: crontab shutdown at 2
           cron:
             name: shutdown at 2
             minute: 0
             hour: 2
             job: shutdown -h now
 
-        - name: dark theme at 22
+        - name: crontab dark theme at 22
           cron:
             name: dark theme
             minute: 0
             hour: 22
             job: '/usr/bin/env DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session)/environ|cut -d= -f2-) gsettings set org.gnome.desktop.interface gtk-theme Adwaita-dark'
 
-        - name: light theme at 6
+        - name: crontab light theme at 6
           cron:
             name: light theme
             minute: 0
