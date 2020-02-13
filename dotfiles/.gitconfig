@@ -5,19 +5,25 @@
 	eol = lf
 [alias]
 	addup = add -up
+	abort = "!if test -f .git/MERGE_HEAD; then git merge --abort; elif test -f .git/REBASE_HEAD; then git rebase --abort; elif test -f .git/CHERRY_PICK_HEAD; then git cherry-pick --abort; fi"
 	amend = commit --amend
-	amendpush = !git add -u && git commit --amend --no-edit && git push -f
-	br = branch
 	branch-name = rev-parse --abbrev-ref HEAD
+  # unfold things like 'git b rm test' to 'git branch-rm test' (then to 'git branch -D test')
+	b = "!f() { if [ $1 ]; then command=$1; shift; git branch-$command $@; else git branch-name; fi; }; f"
 	branches = branch -a
+	branch-copy = checkout -b
+	branch-cp = branch-copy
+	branch-name = rev-parse --abbrev-ref HEAD
+	branch-remove = branch -D
+	branch-rm = branch-remove
 	ci = commit
 	co = checkout
 	commits = log --pretty=oneline
-	copy-branch = checkout -b
-	cpb = copy-branch
 	feature = "!f() { git fresh master; git checkout -b $1; }; f"
+	continue = "!if test -f .git/MERGE_HEAD; then git merge --continue; elif test -f .git/REBASE_HEAD; then git rebase --continue; elif test -f .git/CHERRY_PICK_HEAD; then git cherry-pick --continue; fi"
+	feature = "!f() { git co master; git refresh; git checkout -b $1; }; f"
 	forcepush = push -f
-	fresh = "!f() { git checkout $1 && git pull origin $1; }; f"
+	fp = forcepush
 	get = "!f() { git fetch origin $1; git checkout $1; }; f"
 	graph = log --graph --all --decorate --oneline
 	hardreset = "!f() { git reset --hard HEAD~$1; }; f"
@@ -31,8 +37,6 @@
 	recommit = commit --amend --no-edit
 	refresh = !git pull origin $(git branch-name)
 	remotes = remote -v
-	remove-branch = branch -D
-	rmb = remove-branch
 	savepoint = !git add -u && git commit --allow-empty-message -m ''
 	st = status
 	staged = diff --staged --name-only
