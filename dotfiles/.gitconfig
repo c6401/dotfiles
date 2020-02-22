@@ -3,11 +3,11 @@
 	name = Ruslan Zhenetl
 [core]
 	eol = lf
+	excludesfile = /home/c6401/.gitignore_global
 [alias]
 	addup = add -up
 	abort = "!if test -f .git/MERGE_HEAD; then git merge --abort; elif test -f .git/REBASE_HEAD; then git rebase --abort; elif test -f .git/CHERRY_PICK_HEAD; then git cherry-pick --abort; fi"
 	amend = commit --amend
-	branch-name = rev-parse --abbrev-ref HEAD
   # unfold things like 'git b rm test' to 'git branch-rm test' (then to 'git branch -D test')
 	b = "!f() { if [ $1 ]; then command=$1; shift; git branch-$command $@; else git branch-name; fi; }; f"
 	branches = branch -a
@@ -21,6 +21,8 @@
 	commits = log --pretty=oneline
 	feature = "!f() { git fresh master; git checkout -b $1; }; f"
 	continue = "!if test -f .git/MERGE_HEAD; then git merge --continue; elif test -f .git/REBASE_HEAD; then git rebase --continue; elif test -f .git/CHERRY_PICK_HEAD; then git cherry-pick --continue; fi"
+	diffhead = "!f() { git diff HEAD~$1; }; f"
+	dh = diffhead
 	feature = "!f() { git co master; git refresh; git checkout -b $1; }; f"
 	forcepush = push -f
 	fp = forcepush
