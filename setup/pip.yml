@@ -1,0 +1,14 @@
+#!/usr/bin/env -S ansible-playbook -vvv
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: install pip packages
+      pip:
+        executable: '/usr/bin/pip3'
+        extra_args: --user -U
+        name:
+          - fire
+          - ipdb
+          - ipython
+          - pynput
+          - ruamel.yaml
