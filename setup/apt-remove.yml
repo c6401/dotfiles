@@ -1,0 +1,19 @@
+#!/usr/bin/env -S ansible-playbook -vvv -K
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: remove apt packages
+      apt:
+        name:
+          - aisleriot
+          - libreoffice-draw
+          - libreoffice-impress
+          - gnome-mahjongg
+          - gnome-mines
+          - gnome-sudoku
+          - gnome-todo
+          - rhythmbox
+          - simple-scan
+        state: absent
+      become: true
