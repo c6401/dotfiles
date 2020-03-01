@@ -1,0 +1,30 @@
+#!/usr/bin/env -S ansible-playbook -vvv #-K
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: add apt keys
+      apt_key:
+        url: '{{ item }}'
+      with_items:
+        - https://typora.io/linux/public-key.asc
+        - https://packagecloud.io/AtomEditor/atom/gpgkey
+        - https://brave-browser-apt-release.s3.brave.com/brave-core.asc
+      become: true
+
+    - name: add apt repositories
+      apt_repository:
+        repo: '{{ item }}'
+      with_items:
+        - 'deb https://typora.io/linux ./'
+        - 'deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main'
+        - 'deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main'
+      become: true
+
+    - name: update apt
+      apt:
+        update_cache: yes
+        upgrade: true
+        autoclean: true
+        autoremove: true
+      become: true
