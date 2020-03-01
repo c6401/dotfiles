@@ -1,0 +1,11 @@
+#!/usr/bin/env -S ansible-playbook -vvv
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: install appimage applications
+      get_url:
+        url: '{{ item }}'
+        dest: ~/Applications
+        mode: 0744
+      with_items:
+        - https://github.com/laurent22/joplin/releases/download/v1.0.179/Joplin-1.0.179.AppImage
