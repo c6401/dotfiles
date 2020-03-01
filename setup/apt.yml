@@ -1,7 +1,6 @@
 #!/usr/bin/env -S ansible-playbook -vvv -K
 - hosts: localhost
   connection: local
-  gather_facts: false
   tasks:
     - name: install apt packages
       apt:
@@ -10,6 +9,7 @@
           - atom
           - brave-browser
           - chrome-gnome-shell
+          - curl
           - emacs
           - flatpak
           - git
@@ -22,5 +22,6 @@
           - solaar
           - telegram-desktop
           - typora
+          - xdotool
+          - xsel
       become: true
-
