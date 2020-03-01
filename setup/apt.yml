@@ -1,0 +1,26 @@
+#!/usr/bin/env -S ansible-playbook -vvv -K
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: install apt packages
+      apt:
+        name:
+          - alacarte
+          - atom
+          - brave-browser
+          - chrome-gnome-shell
+          - emacs
+          - flatpak
+          - git
+          - gnome-software-plugin-flatpak
+          - htop
+          - keepassxc
+          - python3
+          - python3-pip
+          - rofi
+          - solaar
+          - telegram-desktop
+          - typora
+      become: true
+
