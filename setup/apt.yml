@@ -10,6 +10,7 @@
           - brave-browser
           - chrome-gnome-shell
           - curl
+          - docker.io
           - emacs
           - flatpak
           - git
