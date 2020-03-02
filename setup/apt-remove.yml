@@ -1,7 +1,6 @@
 #!/usr/bin/env -S ansible-playbook -vvv -K
 - hosts: localhost
   connection: local
-  gather_facts: false
   tasks:
     - name: remove apt packages
       apt:
