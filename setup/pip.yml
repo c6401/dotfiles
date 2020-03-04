@@ -7,8 +7,13 @@
         executable: '/usr/bin/pip3'
         extra_args: --user -U
         name:
+          - browsercookie
+          - docker
+          - docker-compose
           - fire
           - ipdb
           - ipython
           - pynput
+          - pyparsing
           - ruamel.yaml
+          - yeelight
