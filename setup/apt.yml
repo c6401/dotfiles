@@ -8,17 +8,21 @@
           - alacarte
           - atom
           - brave-browser
+          - chromium-browser
           - chrome-gnome-shell
           - curl
           - docker.io
           - emacs
           - flatpak
+          - geary
           - git
           - gnome-software-plugin-flatpak
           - htop
           - keepassxc
+          - postgresql-client
           - python3
           - python3-pip
+          - ripgrep
           - rofi
           - solaar
           - telegram-desktop
