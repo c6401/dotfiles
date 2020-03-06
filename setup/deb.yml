@@ -1,0 +1,11 @@
+#!/usr/bin/env -S ansible-playbook -K
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: install deb packages
+      apt:
+        deb: '{{ item }}'
+      with_items:
+        - https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2019.02.14_amd64.deb
+        - https://go.microsoft.com/fwlink/?LinkID=760868
+      become: true
