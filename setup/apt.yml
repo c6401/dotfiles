@@ -16,15 +16,19 @@
           - flatpak
           - geary
           - git
+          - gitk
           - gnome-software-plugin-flatpak
           - htop
           - keepassxc
+          - libpq-dev
           - postgresql-client
           - python3
+          - python-dev
           - python3-pip
           - ripgrep
           - rofi
           - solaar
+          - stow
           - telegram-desktop
           - typora
           - xdotool
