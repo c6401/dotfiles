@@ -21,6 +21,8 @@
           - htop
           - keepassxc
           - libpq-dev
+          - nodejs
+          - npm
           - postgresql-client
           - python3
           - python-dev
@@ -31,6 +33,7 @@
           - stow
           - telegram-desktop
           - typora
+          - vim
           - xdotool
           - xsel
       become: true
