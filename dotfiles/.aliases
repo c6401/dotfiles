@@ -1,0 +1,3 @@
+alias anpl='ansible-playbook'
+alias doco='docker-compose'
+alias symtree='stow dotfiles/ -t ~'
