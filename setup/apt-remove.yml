@@ -14,5 +14,6 @@
           - gnome-todo
           - rhythmbox
           - simple-scan
+          - thunderbird
         state: absent
       become: true
