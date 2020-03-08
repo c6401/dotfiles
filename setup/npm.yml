@@ -1,0 +1,11 @@
+#!/usr/bin/env -S ansible-playbook -vvv -K
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: npm
+      npm:
+        name: '{{ item }}'
+        global: yes
+      become: true
+      with_items:
+        - yarn
