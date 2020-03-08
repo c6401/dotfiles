@@ -6,6 +6,7 @@
       apt:
         name:
           - alacarte
+          - anki
           - atom
           - brave-browser
           - chromium-browser
