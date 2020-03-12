@@ -14,6 +14,7 @@
           - fire
           - ipdb
           - ipython
+          - jupyter
           - pre-commit
           - psycopg2
           - pynput
