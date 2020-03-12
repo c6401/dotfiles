@@ -14,6 +14,7 @@
           - curl
           - docker.io
           - emacs
+          - flameshot
           - flatpak
           - geary
           - git
