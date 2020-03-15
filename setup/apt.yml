@@ -7,8 +7,6 @@
         name:
           - alacarte
           - anki
-          - atom
-          - brave-browser
           - chromium-browser
           - chrome-gnome-shell
           - curl
@@ -20,9 +18,11 @@
           - git
           - gitk
           - gnome-software-plugin-flatpak
+          - gthumb
           - htop
           - keepassxc
           - libpq-dev
+          - meld
           - nodejs
           - npm
           - postgresql-client
@@ -31,10 +31,10 @@
           - python3-pip
           - ripgrep
           - rofi
+          - rsync
           - solaar
           - stow
           - telegram-desktop
-          - typora
           - vim
           - xdotool
           - xsel
