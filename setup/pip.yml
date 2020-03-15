@@ -19,6 +19,7 @@
           - psycopg2
           - pynput
           - pyparsing
+          - pyppeteer
           - pyquery
           - ruamel.yaml
           - safeeyes
